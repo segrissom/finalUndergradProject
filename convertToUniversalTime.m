@@ -1,8 +1,9 @@
-function univTime=convertToUniversalTime(time_zone,country)
+function [utchour,mon,day]=convertToUniversalTime(time_zone,country)
 time=datetime(Y,M,D,H,MI,S)
+mon=time(2);
+day=time(3);
 hour=time(4);
-min=time(5);
-
+%I need to make sure hta thte days are converted correctly
 if time_zone=='Atlantic Daylight'
     %https://www.mathworks.com/help/matlab/ref/strfind.html
     uhour=hour+3;
@@ -51,11 +52,43 @@ elseif time_zone=='Eastern'
 elseif time_zone=='Eastern Summer'
     uhour=hour-11;
 end
-%i need to work on making sure that the date is correct
-%So if the hour is really early or really late it could be that the date has changed
-%So all of the hours are either less than or more than hte uhour
-%If the difference is positive between uhour and hour then the day would potentially increase
-%this would be 
+%i need to make sure that hte hours are actual hours
+if uhour>24
+    diff=uhour-24;
+    utchour=diff;
+    if day+1>28
+       if month==2;
+        month=3;
+        day=1;
+       else
+       continue
+       if day==30
+        if mon==4 or mon==7 or mon==9 or mon==11
+            mon=mon+1;
+            day=1;
+        else
+        end
+       if day==31
+        if mon==12
+            mon=1;
+            day=1;
+        else
+            mon=mon+1;
+            day=1;
+        end
+    end
+elseif uhour<0
+    utchour=abs(uhour);
+    if day==1
+        if mon==1
+            mon=12;
+        else
+        mon=mon-1;
+        end
+    end
+else 
+    utchour=uhour
+end
 %I can add Asia and Africa later - these are the current most likely I guess
 
     %http://earthsky.org/astronomy-essentials/universal-time
