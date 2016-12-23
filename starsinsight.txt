@@ -3,3 +3,10 @@ function starsinsight=callstars(sidereal)
 %I'm at work on break using the computer to do this Dr. Meaker in case if you see this
 %I apologize for not having sent in the report i just have barely had enough wifi to load
 %my email and that will often take towards 5-10 minutes
+
+time=datetime(Y,M,D,H,MI,S);
+min=time(5);
+sec=time(6);
+%http://calgary.rasc.ca/radecl.htm
+%Declination = degrees + (minutes / 60) + (seconds / 3600) and is the like
+%up-down coordinate
