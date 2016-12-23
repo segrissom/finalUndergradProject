@@ -1,2 +1,5 @@
 function starsinsight=callstars(sidereal)
 %This function is to find the stars that are in the sidereal 
+%I'm at work on break using the computer to do this Dr. Meaker in case if you see this
+%I apologize for not having sent in the report i just have barely had enough wifi to load
+%my email and that will often take towards 5-10 minutes
